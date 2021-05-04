@@ -1,0 +1,139 @@
+/*Reset CSS Global*/
+* {
+    margin: 0;
+    padding: 0;
+}
+/*Propriétés de l'affichage du jeu*/
+.jeu {
+    width: 100%;
+    height: 100vh;
+}
+/*Ecran de lancement avant le jeu*/
+#clickToStartScreen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    z-index: 1000;
+}
+#gameStartScreen.displayed > #clickToStartScreen {
+    opacity:0;
+    transition:1s;
+    pointer-events:none;
+}
+@keyframes paysageMoveUp {
+    from {
+        background-position-y: 300px;
+    }
+    to {
+        background-position-y: bottom;
+    }
+}
+#gameStartScreen.displayed > #gsPaysage {
+    animation: paysageMoveUp 1.5s ease-in;
+}
+h1 {
+    color: white;
+    font-size: 5em;
+}
+/*Début du jeu Ecran*/
+#gameStartScreen {
+    position: absolute;
+    z-index: 500;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../Ressources/titleScreen_Sky.png);
+    overflow: hidden;
+}
+#gsPaysage {
+    position: absolute;
+    z-index: 520;
+    width: 100%;
+    height: 100vh;
+    background-size: 100%;
+    background-position-y: bottom;
+    background-image: url(../Ressources/titleScreen_Paysage.png);
+    background-repeat: no-repeat;
+}
+@keyframes mvmtClouds {
+    from {
+        transform: translateX(0); /*Transform s'appuie sur le GPU au lieu du CPU*/
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+#gsClouds {
+    position: absolute;
+    z-index: 510;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -100%;
+    background-repeat: repeat-x;
+    background-image: url(../Ressources/titleScreen_Clouds.png);
+    animation: mvmtClouds 30s infinite linear;
+}
+
+#titre {
+    position: absolute;
+    z-index: 900;
+    top: 0;
+    bottom: 150px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+@keyframes francoisLogo {
+    0% {
+        transform: translateX(-100vw);
+    }
+    95% {
+        transform: translateX(-100vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+#francois {
+    z-index: 1010;
+    margin-bottom: -20px;
+}
+#gameStartScreen.displayed #francois {
+    animation: francoisLogo 1.3s;
+}
+@keyframes worldLogo {
+    0% {
+        transform: translateY(-100vh);
+    }
+    80% {
+        transform: translateY(-100vh);
+    }
+    100% {
+        transform: translateY(0vh);
+    }
+}
+#world {
+    z-index: 1009;
+
+}
+#gameStartScreen.displayed #world {
+    animation: worldLogo 2s;
+}
+
+#startButton {
+    margin-top: 20px;
+    transform: scale(0.5);
+    opacity: 0;
+    transition:0.5s 2s;
+}
+#gameStartScreen.displayed #startButton {
+    opacity:1;  
+}
