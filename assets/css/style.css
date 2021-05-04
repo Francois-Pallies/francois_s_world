@@ -67,6 +67,14 @@ h1 {
         transform: translateX(-50%);
     }
 }
+@keyframes cloudsUp {
+    from {
+        background-position-y: 600px;
+    }
+    to {
+        background-position-y: 0px;
+    }
+}
 #gsClouds {
     position: absolute;
     z-index: 510;
@@ -74,11 +82,12 @@ h1 {
     bottom: 0;
     left: 0;
     right: -100%;
-    background-repeat: repeat-x;
+    background-repeat: repeat;
     background-image: url(../Ressources/titleScreen_Clouds.png);
-    animation: mvmtClouds 30s infinite linear;
 }
-
+#gameStartScreen.displayed > #gsClouds {
+    animation: 1.5s cloudsUp ease-in, 30s mvmtClouds infinite linear;
+}
 #titre {
     position: absolute;
     z-index: 900;
